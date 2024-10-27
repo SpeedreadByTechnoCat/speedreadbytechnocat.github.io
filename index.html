@@ -1,0 +1,103 @@
+<head>
+<meta charset = "utf-8">
+    <style>
+    #spd
+        {
+            margin:50px;
+            font-size: 30px;
+            width:80%;
+        }
+        #txt
+        {
+            margin:0px 50px;
+            width:80%;
+        }
+        #btn
+        {
+            margin: 10px 40%;
+            
+        }
+        #word
+        {
+            margin-top: 30%;
+            margin-bottom: 50%
+        }
+        hr
+        {
+            width:80%;
+           
+            height:4px;
+            color:black;
+            border:2px solid black;
+            border-radius: 2px;
+            background-color: black;
+        }
+        h1
+        {
+            font-size:50px
+        }
+    
+    </style>
+</head>
+<body>
+    <input id="spd" type="text" placeholder="Скорость, количество слов в минуту">
+    <textarea id="txt" placeholder="Введите ваш текст"></textarea>
+    <a href="#hr"><button id="btn" >
+    Начать</button></a>
+
+    <br>
+    <br><br><br><br><br><br><br><br>
+    <hr id="hr">
+    <h1 id="word" align="center">Слово</h1>
+    <script>
+    //alert("finished");
+    
+document.getElementById("btn").onclick = function () {
+    let text = document.getElementById("txt").value;
+        /*alert(text);*/
+    let number = 0;
+    function nextWord ()
+        {
+            let temp = 
+text.indexOf(" ",number+1);
+            if(temp === -1)  return text.slice(number,text.length) ;
+            [temp,number]=[number,temp];
+            //alert(temp);
+            
+            return text.slice(temp+1,number);
+        }
+    let x = nextWord();
+    alert(Math.round(60000/Number(document.getElementById("spd").value)));
+    /*let y;
+    //alert(nextWord());
+    while(!(x === -1)) {
+        x = nextWord()
+        console.log(x);
+    }
+    alert("finished");
+}*/
+    const timerId = setInterval(() => {
+        
+    if(!(x === -1)){
+    
+  document.getElementById("word").textContent = x;
+    x = nextWord();}
+    else
+        {
+            clearTimeout();
+        }
+}, Math.round(60000/Number(document.getElementById("spd").value)))
+    timerId;
+}
+    
+    </script>
+    
+    
+    
+    
+</body>
+
+
+
+
+
